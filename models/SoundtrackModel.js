@@ -5,3 +5,24 @@
  * Time: 12:21
  * To change this template use File | Settings | File Templates.
  */
+var mongoose = require("mongoose")
+    , Schema = mongoose.Schema;
+
+var Soundtrack = new Schema({
+   userid :Schema.ObjectId,
+   tracks : {type: Array},
+   description: {type: String},
+   tags : {type : String},
+   link : {type : String}
+});
+
+
+Soundtrack.statics.deleteSoundtrack = function (soundtrack,callback) {
+
+    if('object' === typeof soundtrack || 'string' ===  typeof soundtrack ){
+        this.remove(soundtrack).run(callback);
+    }
+
+};
+
+module.exports = Soundtrack;

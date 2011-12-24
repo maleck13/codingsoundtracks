@@ -11,14 +11,8 @@
 
 var express     = require('express')
     , db          = require("./models").db
-    , MemoryStore = require('express/node_modules/connect').session.MemoryStore;
-
-var user = db.models.User;
-console.log(user);
-
-user.findByUserName("john",function(err,data){
-   console.log(data);
-});
+    , MemoryStore = require('express/node_modules/connect').session.MemoryStore
+    , controllers = require("./controllers");
 
 
 var app = module.exports = express.createServer();
@@ -43,10 +37,15 @@ app.configure('production', function(){
 });
 
 
+
 //test
 app.get("/",function(req, res){
     res.render("index",{title:"coding soundtracks"});
 });
+
+app.get("/register",controllers.userController.register);
+
+console.log(controllers);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);

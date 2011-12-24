@@ -17,21 +17,21 @@ var User = new Schema({
 });
 
 //validation functions
-User.path("password").validate(function(value){
-   return (value.length > 6);
-},{message:"password must be longer than 6 chars"});
+//User.path("password").validate(function(value){
+//   return (value.length > 6);
+//},{message:"password must be longer than 6 chars"});
 
 
-User.path("username").validate(function(value){
-    var valid = false;
-    valid = ('string' === typeof value);
-    valid = (valid) ? (value.match(/[^\d\w]/) === null) : false;
-    if(valid){
-        User.findByUserName(value,function (err,data) {
-
-        })
-    }
-});
+//User.path("username").validate(function(value){
+//    var valid = false;
+//    valid = ('string' === typeof value);
+//    valid = (valid) ? (value.match(/[^\d\w]/) === null) : false;
+//    if(valid){
+//        User.findByUserName(value,function (err,data) {
+//
+//        })
+//    }
+//});
 /**
  *
  * @param name String
