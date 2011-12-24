@@ -41,4 +41,5 @@ db = mongoose.connect(mongoUrl);
 
 
 mongoose.model('User', require('./UserModel'));
+mongoose.model("Soundtrack",require("./SoundtrackModel"));
 exports.db = mongoose;

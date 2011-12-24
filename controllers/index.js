@@ -7,3 +7,5 @@
  */
 //export controllers here//
 //eg exports.indexController = require("./IndexController");
+
+exports.userController = require("./UserController");
