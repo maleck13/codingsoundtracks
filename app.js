@@ -13,6 +13,13 @@ var express     = require('express')
     , db          = require("./models").db
     , MemoryStore = require('express/node_modules/connect').session.MemoryStore;
 
+var user = db.models.User;
+console.log(user);
+
+user.findByUserName("john",function(err,data){
+   console.log(data);
+});
+
 
 var app = module.exports = express.createServer();
 
