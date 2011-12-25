@@ -11,7 +11,7 @@ user = require("../models").db.User;
 
 userController = {
     register : function (req,res) {
-        res.send("register");
+        res.render("register",{title:"register"});
     }
 }
 

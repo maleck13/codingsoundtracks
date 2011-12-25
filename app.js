@@ -37,12 +37,6 @@ app.configure('production', function(){
 });
 
 
-
-//test
-app.get("/",function(req, res){
-    res.render("index",{title:"coding soundtracks"});
-});
-
 app.get("/register",controllers.userController.register);
 
 console.log(controllers);
