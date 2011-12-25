@@ -27,7 +27,26 @@ userController = {
         }else{
             res.render("register",{title:"register for codingsoundtracks"});
         }
+    },
+
+    login : function(req,res){
+        if(req.method === "POST"){
+            User.findByUserName(req.body.username,function(err,data){
+                console.log(data);
+                if(err)res.send("error occurred");
+                if(data.username === req.body.username && data.password === req.body.password){
+                        req.session.loggedin = true;
+                        req.session.user = data;
+                        res.redirect("/");
+                }else{
+                    res.render("login",{title:"login"});
+                }
+            });
+        }else{
+           res.render("login",{title:"login"});
+        }
     }
+
 }
 
 

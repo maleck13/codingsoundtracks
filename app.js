@@ -45,6 +45,7 @@ app.get("/", controllers.indexController.homepage);
 
 app.get("/register",controllers.userController.register);
 app.post("/register",controllers.userController.register);
+app.all("/login",controllers.userController.login);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);
