@@ -11,27 +11,13 @@ var mongoose = require('mongoose')
 
 
 var User = new Schema({
-    username : {type : String, index : true,validate:/\d\w/}
+    username : {type : String, index : {unique:true}}
     ,password : {type:String}
-    ,email : {type:String}
+    ,email : {type:String, index:{unique:true}}
+    ,language : {type:String}
 });
 
-//validation functions
-//User.path("password").validate(function(value){
-//   return (value.length > 6);
-//},{message:"password must be longer than 6 chars"});
 
-
-//User.path("username").validate(function(value){
-//    var valid = false;
-//    valid = ('string' === typeof value);
-//    valid = (valid) ? (value.match(/[^\d\w]/) === null) : false;
-//    if(valid){
-//        User.findByUserName(value,function (err,data) {
-//
-//        })
-//    }
-//});
 /**
  *
  * @param name String
@@ -39,12 +25,43 @@ var User = new Schema({
  */
 User.statics.findByUserName = function (name,callback) {
     if('string' === typeof name){
-        console.log("")
         return this.findOne().where({"username":name}).run(callback);
     }else{
         throw{name:"InvalidArgException", message:"username must be a string"};
     }
 };
+
+
+//validation functions
+//User.path("password").validate(function(value){
+//   return (value.length > 6);
+//},{message:"password must be longer than 6 chars"});
+
+
+User.path("username").validate(function(value){
+    console.log("validating");
+    var valid = false;
+    valid = ('string' === typeof value);
+    valid = (value.length > 3);
+    valid = (valid) ? (value.match(/[^\d\w]/) === null) : false;
+    return valid;
+},"username error");
+
+User.path("email").validate(function(value){
+    console.log("validating email " + value);
+    var valid = false;
+    valid = ('string' === typeof value);
+    valid = (value.length >=5);
+    valid = (valid)?(value.search(/^[\d\w][\d\w\.\-\_\&]+\@[\d\w\.]+$/i)!== -1) : false;
+    console.log("valid = " +valid)
+    return valid;
+},"Email is invalid");
+
+function notEmpty(value){
+    console.log("called notEmpty");
+    return ('string' === typeof value && value.length >0);
+}
+
 
 
 module.exports = User;

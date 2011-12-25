@@ -6,12 +6,27 @@
  * To change this template use File | Settings | File Templates.
  */
 var userController,
-    user;
-user = require("../models").db.User;
+    User;
+User = require("../models").db.models.User;
 
 userController = {
     register : function (req,res) {
-        res.render("register",{title:"register"});
+        var newUser;
+        if(req.method === "POST"){
+            try{
+
+                newUser = new User(req.body);
+                newUser.save(function(err,data){
+                    console.log(err +  data);
+                });
+                res.send("post");
+
+            }catch(e){
+                res.send(e.message);
+            }
+        }else{
+            res.render("register",{title:"register for codingsoundtracks"});
+        }
     }
 }
 

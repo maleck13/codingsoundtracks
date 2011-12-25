@@ -15,6 +15,9 @@ var express     = require('express')
     , controllers = require("./controllers");
 
 
+var users = db.models.User;
+users.remove({email:""},function(err,data){});
+
 var app = module.exports = express.createServer();
 
 app.configure(function(){
@@ -38,7 +41,7 @@ app.configure('production', function(){
 
 
 app.get("/register",controllers.userController.register);
-
+app.post("/register",controllers.userController.register);
 console.log(controllers);
 
 var port = (process.env.VMC_APP_PORT || 3000);
