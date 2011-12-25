@@ -13,7 +13,9 @@ var Soundtrack = new Schema({
    tracks : {type: Array},
    description: {type: String},
    tags : {type : String},
-   link : {type : String}
+   link : {type : String},
+   rank : {type : Number},
+   comments : {type : Array} //author and text
 });
 
 
@@ -25,4 +27,10 @@ Soundtrack.statics.deleteSoundtrack = function (soundtrack,callback) {
 
 };
 
+Soundtrack.statics.findValidPlaylists = function(callback) {
+    this.find()
+        .where("link").ne(null)
+        .where("tracks").ne(null)
+        .run(callback);
+}
 module.exports = Soundtrack;

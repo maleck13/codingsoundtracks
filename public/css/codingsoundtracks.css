@@ -1,0 +1,99 @@
+ul
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #666699;
+}
+
+li
+{
+    border-top: 1px solid #666699;
+    padding: 15px;
+}
+
+li:nth-child(even)
+{
+    background-color: #DDDDEE;
+}
+
+li:nth-child(odd)
+{
+    background-color: #EEEEFF;
+}
+
+a
+{
+    color: #DDDDEE;
+    text-decoration: underline;
+}
+
+a:hover
+{
+    color: #EEEEFF;
+}
+
+.playlist
+{
+    display: block;
+    border: 1px solid #444455;
+    background-color: #AAAABB;
+    padding: 15px;
+    width: 550px;
+}
+
+.playlist-link
+{
+    font-size: 25px;
+}
+
+.playlist-rank
+{
+    float: right;
+}
+
+.vote-up
+{
+    text-decoration: none;
+}
+
+.vote-down
+{
+    text-decoration: none;
+}
+
+.playlist-comments
+{
+    display: block;
+    border: 1px solid #DDDDEE;
+    background-color: #444455;
+    margin: 15px;
+    padding: 15px;
+    width: 350px;
+}
+
+.playlist-comments .author
+{
+    display: block;
+    font-size: 20px;
+    color: #EEEEFF;
+}
+
+.playlist-comments .comment
+{
+    display: block;
+    clear: both;
+    border-bottom: 1px solid #DDDDEE;
+    margin-bottom: 5px;
+}
+
+.playlist-comments .more-comments
+{
+    display: block;
+    clear: both;
+}
+
+.playlist-comments .more-comments:hover
+{
+    color: #EEEEFF;
+}
