@@ -33,4 +33,48 @@ Soundtrack.statics.findValidPlaylists = function(callback) {
         .where("tracks").ne(null)
         .run(callback);
 }
+
+Soundtrack.path("tags").validate(function(value){
+    if('Array' === typeof value){
+        return true;
+    }
+    return false;
+}, "tags error");
+
+Soundtrack.path("description").validate(function(value){
+    if('String' === typeof value){
+        return true;
+    }
+    return false;
+}, "description error");
+
+Soundtrack.path("tracks").validate(function(value){
+    if('Array' === typeof value){
+        return true;
+    }
+    return false;
+}, "tracks error");
+
+Soundtrack.path("link").validate(function(value){
+    if(value.search(/http:\/\/[a-z0-9\-\.]+\.[a-z][a-z][a-z\.]*/gi) !== -1){
+        return true;
+    }
+    return false;
+}, "link error");
+
+Soundtrack.path("rank").validate(function(value){
+    if('Number' === typeof value){
+        return true;
+    }
+    return false;
+}, "link error");
+
+Soundtrack.path("comments").validate(function(value){
+    if('Array' === typeof value){
+        return true;
+    }
+    return false;
+}, "comments error");
+
+
 module.exports = Soundtrack;
