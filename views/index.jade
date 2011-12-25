@@ -1,0 +1,21 @@
+ul
+    - each soundtrack,_id in soundtracks
+        li
+            span(class="playlist")
+                a(class="playlist-link", href="#")!= soundtrack.link
+                span(class="playlist-rank")
+                    p rank: 
+                        - if('Number' === typeof soundtrack.rank)
+                            span!= soundtrack.rank 
+                        - else
+                            span 0 
+                        span(class="vote-up")
+                            a(href="+") +
+                        &nbsp;/ 
+                        span(class="vote-down")
+                            a(href="-") - 
+                - if(soundtrack.comments.length > 0)
+                    span(class="playlist-comments")
+                        - each comment,_id in soundtrack.comments
+                            span(class="author") comment.author
+                            span(class="comment") comment.text

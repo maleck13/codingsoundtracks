@@ -40,9 +40,11 @@ app.configure('production', function(){
 });
 
 
+//test
+app.get("/", controllers.indexController.homepage);
+
 app.get("/register",controllers.userController.register);
 app.post("/register",controllers.userController.register);
-console.log(controllers);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);

@@ -9,3 +9,4 @@
 //eg exports.indexController = require("./IndexController");
 
 exports.userController = require("./UserController");
+exports.indexController = require("./IndexController");
