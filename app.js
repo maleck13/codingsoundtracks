@@ -17,6 +17,8 @@ var express     = require('express')
 
 var app = module.exports = express.createServer();
 
+var Soundtrack = db.models.Soundtrack;
+
 app.configure(function(){
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
@@ -39,9 +41,7 @@ app.configure('production', function(){
 
 
 //test
-app.get("/",function(req, res){
-    res.render("index",{title:"coding soundtracks"});
-});
+app.get("/", controllers.indexController.homepage);
 
 app.get("/register",controllers.userController.register);
 
