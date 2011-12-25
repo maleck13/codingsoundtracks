@@ -32,19 +32,23 @@ userController = {
     login : function(req,res){
         if(req.method === "POST"){
             User.findByUserName(req.body.username,function(err,data){
-                console.log(data);
                 if(err)res.send("error occurred");
                 if(data.username === req.body.username && data.password === req.body.password){
                         req.session.loggedin = true;
                         req.session.user = data;
                         res.redirect("/");
                 }else{
-                    res.render("login",{title:"login"});
+                    res.render("login",{title:"login",error:{message:"username or password incorrect"}});
                 }
             });
         }else{
            res.render("login",{title:"login"});
         }
+    },
+
+    logout : function(req, res){
+        req.session.destroy();
+        res.send("logged out");
     }
 
 }

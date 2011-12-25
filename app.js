@@ -46,6 +46,7 @@ app.get("/", controllers.indexController.homepage);
 app.get("/register",controllers.userController.register);
 app.post("/register",controllers.userController.register);
 app.all("/login",controllers.userController.login);
+app.get("/logout",controllers.userController.logout);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);
