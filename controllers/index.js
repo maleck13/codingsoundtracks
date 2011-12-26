@@ -10,3 +10,4 @@
 
 exports.userController = require("./UserController");
 exports.indexController = require("./IndexController");
+exports.soundtrackController = require("./SoundtrackController");

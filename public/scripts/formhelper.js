@@ -6,13 +6,28 @@
  * To change this template use File | Settings | File Templates.
  */
 $(document).ready(function(){
-      $('form[name="registerform"] input[name="username"]').bind("keyup",checkUsername);
-      $('form[name="registerform"] input[name="password"]').bind("keyup",checkPassword);
-      $('form[name="registerform"] input[name="email"]').bind("keyup",checkEmail);
+        $('form[name="registerform"] input[name="username"]').bind("keyup",checkUsername);
+        $('form[name="registerform"] input[name="password"]').bind("keyup",checkPassword);
+        $('form[name="registerform"] input[name="email"]').bind("keyup",checkEmail);
+        $('form').submit(checkRequired);
+        $('form[name="addsoundtrack"]').submit(checkValidLink);
 
 });
 
+function checkValidLink(){
+    console.log("checkValidLink");
+    var valid = false,
+        ele = $(this).find('input[name="link"]'), value = ele.val() || "",
+        helpele = ele.parent().find('.help-inline');
 
+    valid   = ('string' === typeof value);
+    valid   = (valid)?(value.match(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/) !== null):false;
+    if(!valid){
+        helpele.css("color","red");
+        helpele.html("your link does not appear to be valid");
+    }
+    return valid;
+}
 
 function checkUsername () {
    var valid = false, value = $(this).val(), helpele = $(this).parent().find('.help-inline');
@@ -64,5 +79,32 @@ function checkEmail () {
 
 function help(ele,message){
     ele.html(message);
+}
+
+function checkRequired(){
+    console.log("checkRequired");
+    var reqInputs   = $(this).find(".required"),
+        helpele     = undefined,
+        bgcolor     = undefined,
+        valid       = true;
+    console.log(reqInputs);
+
+    if(reqInputs.length > 0){
+        reqInputs.each(function(){
+            helpele = $(this).parent().find(".help-inline");
+            bgcolor = (helpele)? helpele.css("color"):undefined;
+            if($(this).val() === ""){
+                  if(helpele.length > 0){
+                      helpele.css("color","red");
+                      helpele.html("this is a required field");
+                      valid = false;
+                  }else{
+                      alert($(this).attr("name") + " is a required field");
+                      valid = false;
+                  }
+            }
+        });
+    }
+    return valid;
 }
 

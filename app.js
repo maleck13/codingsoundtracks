@@ -38,7 +38,7 @@ app.configure('development', function(){
 app.configure('production', function(){
     app.use(express.errorHandler());
 });
-
+//sets up helpers available in the views
 app.dynamicHelpers({
    session: function (req, res){
        return req.session;
@@ -56,6 +56,9 @@ app.post("/register",controllers.userController.register);
 app.all("/login",controllers.userController.login);
 app.get("/logout",controllers.userController.logout);
 app.post("/user/checkname",controllers.userController.checkUsernameAvailable);
+
+//soundtracks
+app.all("/soundtrack/add",controllers.soundtrackController.add);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);
