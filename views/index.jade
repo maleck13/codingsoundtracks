@@ -2,18 +2,20 @@ ul
     - each soundtrack,_id in soundtracks
         li
             span(class="playlist")
-                a(class="playlist-link", href="#")!= soundtrack.link
+                a(class="playlist-link", href="soundtrack.link")!= soundtrack.name
+                a(href="/playlist?id="+soundtrack._id) More information 
                 span(class="playlist-rank")
                     p rank: 
                         - if('Number' === typeof soundtrack.rank)
                             span!= soundtrack.rank 
                         - else
                             span 0 
-                        span(class="vote-up")
-                            a(href="+") +
-                        &nbsp;/ 
-                        span(class="vote-down")
-                            a(href="-") - 
+                        - if(session.loggedin)
+                            span(class="vote-up")
+                                a(href="/vote-up?id="+soundtrack._id) +
+                            &nbsp;/ 
+                            span(class="vote-down")
+                                a(href="/vote-down?id="+soundtrack._id) - 
                 - if(soundtrack.comments.length > 0)
                     span(class="playlist-comments")
                         - each comment,_id in soundtrack.comments

@@ -1,0 +1,9 @@
+div(class="menu")
+    - if(session.loggedin)
+        span(class="menu-links")
+            a(href="/logout") logout
+    - else
+        span(class="menu-links")
+            a(href="/login") login
+            &nbsp;|
+            a(href="/register") register
