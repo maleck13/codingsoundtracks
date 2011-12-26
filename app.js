@@ -39,13 +39,22 @@ app.configure('production', function(){
     app.use(express.errorHandler());
 });
 
+app.dynamicHelpers({
+   session: function (req, res){
+       return req.session;
+   } 
+});
 
-//test
+//homepage
 app.get("/", controllers.indexController.homepage);
 
+//registration page
 app.get("/register",controllers.userController.register);
 app.post("/register",controllers.userController.register);
+
+//login page
 app.all("/login",controllers.userController.login);
+app.all("/logout",controllers.userController.logout);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);

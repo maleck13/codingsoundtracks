@@ -15,6 +15,7 @@ var Soundtrack = new Schema({
    tags : {type : String},
    link : {type : String},
    rank : {type : Number},
+   name : {type : String},
    comments : {type : Array} //author and text
 });
 
@@ -61,6 +62,13 @@ Soundtrack.path("link").validate(function(value){
     }
     return false;
 }, "link error");
+
+Soundtrack.path("name").validate(function(value){
+    if('String' === typeof value){
+        return true;
+    }
+    return false;
+}, "name error");
 
 Soundtrack.path("rank").validate(function(value){
     if('Number' === typeof value){

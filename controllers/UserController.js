@@ -45,8 +45,14 @@ userController = {
         }else{
            res.render("login",{title:"login"});
         }
-    }
+    },
 
+    logout : function(req,res){
+        req.session.loggedin = false;
+        req.session.user = null;
+        res.redirect("/login");
+    }
+    
 }
 
 
