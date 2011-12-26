@@ -55,7 +55,7 @@ app.post("/register",controllers.userController.register);
 //login page
 app.all("/login",controllers.userController.login);
 app.get("/logout",controllers.userController.logout);
-
+app.post("/user/checkname",controllers.userController.checkUsernameAvailable);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);

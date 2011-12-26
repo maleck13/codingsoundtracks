@@ -1,7 +1,10 @@
 div(class="menu")
     - if(session.loggedin)
         span(class="menu-links")
+            a(href="/soundtrack/add") Add Soundtrack
+            &nbsp;|
             a(href="/logout") logout
+
     - else
         span(class="menu-links")
             a(href="/login") login

@@ -1,25 +1,27 @@
-div(class="container")
-    form(method = "post")
-        fieldset
-            legend Register
-            div(class="clearfix")
-                label(for="username") Username:
-                div(class="input", id="username")
-                    input(class="xlarge", placeholder="Username (required)", id="xlInput", name="username", size="30", type="text")
-            div(class="clearfix")
-                label(for="password") Password :
-                div(class="input", id="password")
-                    input(class="xlarge", placeholder="Password (required)" , id="xlInput", name="password", size="30", type="password")
-            div(class="clearfix")
-                label(for="email") Email :
-                div(class="input", id="email")
-                    input(class="xlarge", id="xlInput", placeholder="Email (required)", name="email", size="30", type="text")
-            div(class="clearfix")
-                label(for="language") Language :
-                div(class="input", id="language")
-                    input(class="xlarge", id="xlInput", placeholder="Favourite programming language (optional)", name="language", size="30", type="text")
+form(method = "post", name="registerform")
+    fieldset
+        legend Register For Codingsoundtracks
+        div(class="clearfix")
+            label(for="username") Username:
+            div(class="input", id="username")
+                input(class="xlarge", placeholder="Username (required)", id="xlInput", name="username", size="30", type="text")
+                span(class="help-inline red")
+        div(class="clearfix")
+            label(for="password") Password :
+            div(class="input", id="password")
+                input(class="xlarge", placeholder="Password (required)" , id="xlInput", name="password", size="30", type="password")
+                span(class="help-inline red")
+        div(class="clearfix")
+            label(for="email") Email :
+            div(class="input", id="email")
+                input(class="xlarge", id="xlInput", placeholder="Email (required)", name="email", size="30", type="text")
+                span(class="help-inline red")
+        div(class="clearfix")
+            label(for="language") Language :
+            div(class="input", id="language")
+                input(class="xlarge", id="xlInput", placeholder="Favourite programming language (optional)", name="language", size="30", type="text")
 
-            div(class="clearfix")
-                div(class="input", id="submit")
-                    input(type="submit", class="btn primary", value="Register")
+        div(class="clearfix")
+            div(class="input", id="submit")
+                input(type="submit", class="btn primary", value="Register")
 

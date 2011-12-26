@@ -49,6 +49,22 @@ userController = {
     logout : function(req, res){
         req.session.destroy();
         res.send("logged out");
+    },
+
+    //utitlity function to check if username is available
+    checkUsernameAvailable : function (req,res) {
+        var username = req.body.username, notok = {message:"not ok"}, ok = {message:"ok"};
+        if(! username || username.length < 3) res.send(notok);
+        else{
+            User.findByUserName(req.body.username,function (err, data) {
+                console.log(data);
+                if(data){
+                    res.send(notok);
+                }else{
+                    res.send(ok);
+                }
+            });
+        }
     }
 
 }
