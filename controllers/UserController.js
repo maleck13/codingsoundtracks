@@ -18,8 +18,14 @@ userController = {
                 newUser = new User(req.body);
                 newUser.save(function(err,data){
                     console.log(err +  data);
+                    if(err)res.send("an error occurred");
+                    else{
+                        req.session.loggedin = true;
+                        req.session.user = data;
+                        res.redirect("/");
+                    }
                 });
-                res.send("post");
+
 
             }catch(e){
                 res.send(e.message);
