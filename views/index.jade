@@ -10,8 +10,8 @@ ul
     - each soundtrack,_id in soundtracks
         li
             span(class="playlist")
-                a(class="playlist-link", href="soundtrack.link")!= soundtrack.name
-                a(href="/playlist?id="+soundtrack._id) More information 
+                a(class="playlist-link", href=soundtrack.link)!= soundtrack.name
+                a(href="/soundtrack/show/"+soundtrack._id) More information
                 span(class="playlist-rank")
                     p rank: 
                         - if('Number' === typeof soundtrack.rank)

@@ -59,6 +59,7 @@ app.post("/user/checkname",controllers.userController.checkUsernameAvailable);
 
 //soundtracks
 app.all("/soundtrack/add",controllers.soundtrackController.add);
+app.get("/soundtrack/show/:id",controllers.soundtrackController.show);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);

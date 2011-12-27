@@ -9,7 +9,7 @@ var mongoose = require("mongoose")
     , Schema = mongoose.Schema;
 
 var Soundtrack = new Schema({
-   userid :Schema.ObjectId,
+   _user :{ type: Schema.ObjectId, ref:'User'},
    tracks : {type: Array},
    description: {type: String},
    tags : {type : String},
@@ -33,6 +33,15 @@ Soundtrack.statics.findValidPlaylists = function(callback) {
         .where("link").ne(null)
         .where("tracks").ne(null)
         .run(callback);
+};
+
+
+Soundtrack.statics.findById = function (id,callback) {
+    if('string' === typeof id && 'function' === typeof callback){
+        this.findOne().where("_id",id).populate("_user").run(callback);
+    }else{
+        throw{message:"id must be a string and callback must be a function",type:"InvalidArgsException"};
+    }
 }
 
 //Soundtrack.path("tags").validate(function(value){
