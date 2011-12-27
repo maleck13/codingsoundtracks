@@ -1,7 +1,11 @@
 div(class="menu")
+            a(href="/", class="left") home
     - if(session.loggedin)
         span(class="menu-links")
+            a(href="/soundtrack/add") Add Soundtrack
+            &nbsp;|
             a(href="/logout") logout
+
     - else
         span(class="menu-links")
             a(href="/login") login

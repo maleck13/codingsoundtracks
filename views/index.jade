@@ -1,9 +1,17 @@
+div(class="row show-grid")
+    div(class="span4",style="height:2px;")
+    div(class="span8")
+        form(name="search",method="POST")
+            input(type="text", placeholder="Search using keyword (java, electronic)",name="search", class="span6")
+            span(class="help-inline)
+                input(type="submit", class="btn primary", value="Search",style="margin-left:5px;")
+
 ul
     - each soundtrack,_id in soundtracks
         li
             span(class="playlist")
-                a(class="playlist-link", href="soundtrack.link")!= soundtrack.name
-                a(href="/playlist?id="+soundtrack._id) More information 
+                a(class="playlist-link", href=soundtrack.link)!= soundtrack.name
+                a(href="/soundtrack/show/"+soundtrack._id) More information
                 span(class="playlist-rank")
                     p rank: 
                         - if('Number' === typeof soundtrack.rank)

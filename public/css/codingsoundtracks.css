@@ -103,10 +103,12 @@ a:hover
     position: fixed;
     top: 0;
     left: 0;
-    height: 20px;
+    height: 25px;
     width: 100%;
     background-color: #333333;
     opacity: 0.6;
+    margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .menu-links
@@ -114,4 +116,26 @@ a:hover
     float: right; 
     display: block; 
     position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.left{
+    float: left;
+}
+
+.red{color: red;}
+
+
+.span16{
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.footer{
+    background-color: #333333;
+    position: fixed;
+    bottom: 0px;
+    min-height: 20px;
+    width: 100%;
 }

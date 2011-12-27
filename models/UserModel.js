@@ -24,8 +24,9 @@ var User = new Schema({
  * @param callback function(err,data)
  */
 User.statics.findByUserName = function (name,callback) {
+    console.log(name);
     if('string' === typeof name){
-        return this.findOne().where({"username":name}).run(callback);
+        return this.findOne().where('username',name).run(callback);
     }else{
         throw{name:"InvalidArgException", message:"username must be a string"};
     }
@@ -52,7 +53,7 @@ User.path("email").validate(function(value){
     var valid = false;
     valid = ('string' === typeof value);
     valid = (value.length >=5);
-    valid = (valid)?(value.search(/^[\d\w][\d\w\.\-\_\&]+\@[\d\w\.]+$/i)!== -1) : false;
+    valid = (valid)?(value.search(/^[\d\w\.-_&]+@[\d\w\.-]+\.[\d\w]{2,5}$/i)!== -1) : false;
     console.log("valid = " +valid)
     return valid;
 },"Email is invalid");

@@ -18,8 +18,14 @@ userController = {
                 newUser = new User(req.body);
                 newUser.save(function(err,data){
                     console.log(err +  data);
+                    if(err)res.send("an error occurred");
+                    else{
+                        req.session.loggedin = true;
+                        req.session.user = data;
+                        res.redirect("/");
+                    }
                 });
-                res.send("post");
+
 
             }catch(e){
                 res.send(e.message);
@@ -32,14 +38,13 @@ userController = {
     login : function(req,res){
         if(req.method === "POST"){
             User.findByUserName(req.body.username,function(err,data){
-                console.log(data);
                 if(err)res.send("error occurred");
                 if(data.username === req.body.username && data.password === req.body.password){
                         req.session.loggedin = true;
                         req.session.user = data;
                         res.redirect("/");
                 }else{
-                    res.render("login",{title:"login"});
+                    res.render("login",{title:"login",error:{message:"username or password incorrect"}});
                 }
             });
         }else{
@@ -47,12 +52,27 @@ userController = {
         }
     },
 
-    logout : function(req,res){
-        req.session.loggedin = false;
-        req.session.user = null;
-        res.redirect("/login");
+    logout : function(req, res){
+        req.session.destroy();
+        res.send("logged out");
+    },
+
+    //utitlity function to check if username is available
+    checkUsernameAvailable : function (req,res) {
+        var username = req.body.username, notok = {message:"not ok"}, ok = {message:"ok"};
+        if(! username || username.length < 3) res.send(notok);
+        else{
+            User.findByUserName(req.body.username,function (err, data) {
+                console.log(data);
+                if(data){
+                    res.send(notok);
+                }else{
+                    res.send(ok);
+                }
+            });
+        }
     }
-    
+
 }
 
 

@@ -9,7 +9,7 @@ var mongoose = require("mongoose")
     , Schema = mongoose.Schema;
 
 var Soundtrack = new Schema({
-   userid :Schema.ObjectId,
+   _user :{ type: Schema.ObjectId, ref:'User'},
    tracks : {type: Array},
    description: {type: String},
    tags : {type : String},
@@ -33,38 +33,47 @@ Soundtrack.statics.findValidPlaylists = function(callback) {
         .where("link").ne(null)
         .where("tracks").ne(null)
         .run(callback);
+};
+
+
+Soundtrack.statics.findById = function (id,callback) {
+    if('string' === typeof id && 'function' === typeof callback){
+        this.findOne().where("_id",id).populate("_user").run(callback);
+    }else{
+        throw{message:"id must be a string and callback must be a function",type:"InvalidArgsException"};
+    }
 }
 
-Soundtrack.path("tags").validate(function(value){
-    if('Array' === typeof value){
-        return true;
-    }
-    return false;
-}, "tags error");
+//Soundtrack.path("tags").validate(function(value){
+//    if('Array' === typeof value){
+//        return true;
+//    }
+//    return false;
+//}, "tags error");
 
 Soundtrack.path("description").validate(function(value){
-    if('String' === typeof value){
+    if('string' === typeof value){
         return true;
     }
     return false;
 }, "description error");
 
-Soundtrack.path("tracks").validate(function(value){
-    if('Array' === typeof value){
-        return true;
-    }
-    return false;
-}, "tracks error");
+//Soundtrack.path("tracks").validate(function(value){
+//    if('Array' === typeof value){
+//        return true;
+//    }
+//    return false;
+//}, "tracks error");
 
 Soundtrack.path("link").validate(function(value){
-    if(value.search(/http:\/\/[a-z0-9\-\.]+\.[a-z][a-z][a-z\.]*/gi) !== -1){
+    if(value.search(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/) !== -1){
         return true;
     }
     return false;
 }, "link error");
 
 Soundtrack.path("name").validate(function(value){
-    if('String' === typeof value){
+    if('string' === typeof value){
         return true;
     }
     return false;
@@ -77,12 +86,12 @@ Soundtrack.path("rank").validate(function(value){
     return false;
 }, "link error");
 
-Soundtrack.path("comments").validate(function(value){
-    if('Array' === typeof value){
-        return true;
-    }
-    return false;
-}, "comments error");
+//Soundtrack.path("comments").validate(function(value){
+//    if('Array' === typeof value){
+//        return true;
+//    }
+//    return false;
+//}, "comments error");
 
 
 module.exports = Soundtrack;

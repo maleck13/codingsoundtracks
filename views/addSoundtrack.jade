@@ -1,0 +1,27 @@
+form(method="POST", name="addsoundtrack")
+    fieldset
+        legend Add Your Coding Soundtrack
+        div(class="clearfix")
+            label(for="username") Name:
+            div(class="input", id="name")
+                input(class="xxlarge required", placeholder="Sound Track Name (required)", id="xlInput", name="name", size="40", type="text")
+                span(class="help-inline") Add the name of your soundtrack
+        div(class="clearfix")
+            label(for="link") Link:
+            div(class="input", id="link")
+                input(class="xxlarge required", placeholder="Link to soundtrack (required)", id="xlInput", name="link", size="40", type="text")
+                span(class="help-inline") Add Link to your soundtrack
+        div(class="clearfix")
+            label(for="description") Description:
+            div(class="input", id="description")
+                textarea(class="xxlarge", id="textarea", name="description", rows="3")
+                span(class="help-inline") Description: music type artists extra
+        div(class="clearfix")
+            label(for="tags") Tags:
+            div(class="input", id="tags")
+                input(class="xxlarge", placeholder="Tags comma seperated (optional)", id="xlInput", name="tags", size="40", type="text")
+                span(class="help-inline") eg. java, electronic, fast paced
+        div(class="clearfix")
+            div(class="input", id="submit")
+                input(type="submit", class="btn primary", value="Save")
+
