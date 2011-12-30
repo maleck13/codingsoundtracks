@@ -13,17 +13,17 @@ ul
                 a(class="playlist-link", href=soundtrack.link)!= soundtrack.name
                 a(href="/soundtrack/show/"+soundtrack._id) More information
                 span(class="playlist-rank")
-                    p rank: 
-                        - if('Number' === typeof soundtrack.rank)
-                            span!= soundtrack.rank 
+                    p rank:
+                        - if(undefined !== typeof soundtrack.rank)
+                            span(id="rank")!=soundtrack.rank +"- "
                         - else
-                            span 0 
+                            span 0
                         - if(session.loggedin)
                             span(class="vote-up")
-                                a(href="/vote-up?id="+soundtrack._id) +
+                                a(href="/soundtrack/vote/"+soundtrack._id+"/up", class="vote", id=soundtrack._id) +
                             &nbsp;/ 
                             span(class="vote-down")
-                                a(href="/vote-down?id="+soundtrack._id) - 
+                                a(href="/soundtrack/vote/"+soundtrack._id+"/down", class="vote", id=soundtrack._id) -
                 - if(soundtrack.comments.length > 0)
                     span(class="playlist-comments")
                         - each comment,_id in soundtrack.comments

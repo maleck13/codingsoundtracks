@@ -8,6 +8,13 @@
 var mongoose = require("mongoose")
     , Schema = mongoose.Schema;
 
+var Vote = new Schema(
+    {
+        type:{type:String},
+        uid : {type : String}
+    }
+);
+
 var Soundtrack = new Schema({
    _user :{ type: Schema.ObjectId, ref:'User'},
    tracks : {type: Array},
@@ -16,6 +23,7 @@ var Soundtrack = new Schema({
    link : {type : String},
    rank : {type : Number},
    name : {type : String},
+   votes : {type : [Vote]},
    comments : {type : Array} //author and text
 });
 
@@ -35,6 +43,11 @@ Soundtrack.statics.findValidPlaylists = function(callback) {
         .run(callback);
 };
 
+Soundtrack.statics.getSoundtrackVotes = function (sid, callback) {
+    this.findOne().where("_id",sid).select('votes').run(callback);
+};
+
+
 
 Soundtrack.statics.findById = function (id,callback) {
     if('string' === typeof id && 'function' === typeof callback){
@@ -42,7 +55,7 @@ Soundtrack.statics.findById = function (id,callback) {
     }else{
         throw{message:"id must be a string and callback must be a function",type:"InvalidArgsException"};
     }
-}
+};
 
 //Soundtrack.path("tags").validate(function(value){
 //    if('Array' === typeof value){
@@ -79,12 +92,13 @@ Soundtrack.path("name").validate(function(value){
     return false;
 }, "name error");
 
-Soundtrack.path("rank").validate(function(value){
-    if('Number' === typeof value){
-        return true;
-    }
-    return false;
-}, "link error");
+//Soundtrack.path("rank").validate(function(value){
+//    console.log(value + typeof value);
+//    if('number' === typeof value){
+//        return true;
+//    }
+//    return false;
+//}, "rank error");
 
 //Soundtrack.path("comments").validate(function(value){
 //    if('Array' === typeof value){
