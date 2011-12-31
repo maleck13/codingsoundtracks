@@ -40,6 +40,7 @@ Soundtrack.statics.findValidPlaylists = function(callback) {
     this.find()
         .where("link").ne(null)
         .where("tracks").ne(null)
+        .sort('rank','descending')
         .run(callback);
 };
 
@@ -57,6 +58,17 @@ Soundtrack.statics.findById = function (id,callback) {
     }
 };
 
+Soundtrack.statics.searchByKeyWords = function (words, callback) {
+    var searchWords = (words.indexOf(",") !== -1)?words.split(","):words;
+    if(searchWords instanceof Array){
+        searchWords = searchWords.join("|");
+    }
+    var regex = new RegExp(".*"+searchWords+".*",'g');
+    this.find().where("tags").regex(regex).run(callback);
+
+
+};
+
 //Soundtrack.path("tags").validate(function(value){
 //    if('Array' === typeof value){
 //        return true;
@@ -70,13 +82,6 @@ Soundtrack.path("description").validate(function(value){
     }
     return false;
 }, "description error");
-
-//Soundtrack.path("tracks").validate(function(value){
-//    if('Array' === typeof value){
-//        return true;
-//    }
-//    return false;
-//}, "tracks error");
 
 Soundtrack.path("link").validate(function(value){
     if(value.search(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/) !== -1){

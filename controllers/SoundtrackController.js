@@ -149,6 +149,21 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
                     });
                 }
             });
+        },
+
+        search : function (req,res) {
+            var type = req.body.type || "";
+            var words = req.body.search || "";
+            console.log(words);
+            soundtrack.searchByKeyWords(words,function(err,data){
+                if(type === "json"){
+                    res.send(data);
+                    return;
+                }else{
+                    res.render("index", {title: "coding soundtracks", soundtracks: data});
+                }
+            });
+
         }
     };
 

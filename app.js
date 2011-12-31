@@ -64,6 +64,7 @@ app.all("/soundtrack/delete/:id",controllers.soundtrackController.deleteTrack);
 app.get("/soundtrack/update/:id",controllers.soundtrackController.update);
 //posted to via jquery ajax call
 app.get("/soundtrack/vote/:id/:vote",controllers.soundtrackController.vote);
+app.all("/soundtrack/search",controllers.soundtrackController.search);
 
 var port = (process.env.VMC_APP_PORT || 3000);
 app.listen(port);
