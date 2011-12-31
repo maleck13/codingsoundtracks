@@ -5,6 +5,7 @@ indexController = {
     homepage : function (req,res) {
         soundtrack.findValidPlaylists(function(err, data){
             console.log(data);
+            console.log(err);
             res.render("index", {title: "coding soundtracks", soundtracks: data});
         });
     }
