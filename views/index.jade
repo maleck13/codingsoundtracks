@@ -11,8 +11,6 @@ ul
         li
             span(class="playlist")
                 a(class="playlist-link", href=soundtrack.link)!= soundtrack.name
-                br
-                a(href="/soundtrack/show/"+soundtrack._id) More information
                 span(class="playlist-rank")
                     p rank:
                         - if(undefined !== typeof soundtrack.rank)
@@ -30,3 +28,5 @@ ul
                         - each comment,_id in soundtrack.comments
                             span(class="author") comment.author
                             span(class="comment") comment.text
+                br
+                a(href="/soundtrack/show/"+soundtrack._id) More information
