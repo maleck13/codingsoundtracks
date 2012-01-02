@@ -1,3 +1,19 @@
+body
+{
+    background-color: #333388;
+}
+
+.container
+{
+    background-color: #FFFFFF;
+    border-left: 4px solid #000055;
+    border-right: 4px solid #000055;
+    border-bottom: 7px solid #000055;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0px 0px 15px #000;
+}
+
 ul
 {
     list-style: none;
@@ -36,10 +52,12 @@ a:hover
 .playlist
 {
     display: block;
-    border: 1px solid #444455;
-    background-color: #AAAABB;
+    border: 1px solid #000055;
+    background-color: #9999BB;
     padding: 15px;
     width: 550px;
+    border-radius: 5px;
+    margin-left: 15px;
 }
 
 .playlist-link
@@ -50,16 +68,19 @@ a:hover
 .playlist-rank
 {
     float: right;
+    color: #EEEEEE;
 }
 
-.vote-up
+.vote, .vote:hover
 {
+    font-size: 25px;
+    font-weight: bold;
     text-decoration: none;
 }
 
-.vote-down
+.vote:hover
 {
-    text-decoration: none;
+    color: #FFFFFF;
 }
 
 .playlist-comments
@@ -85,6 +106,7 @@ a:hover
     clear: both;
     border-bottom: 1px solid #DDDDEE;
     margin-bottom: 5px;
+    color: #DDDDFF;
 }
 
 .playlist-comments .more-comments
@@ -98,17 +120,24 @@ a:hover
     color: #EEEEFF;
 }
 
-.menu
+.menu-container
 {
     position: fixed;
     top: 0;
     left: 0;
     height: 25px;
     width: 100%;
-    background-color: #333333;
+    background-color: #333366;
     opacity: 0.6;
     margin-bottom: 10px;
     padding-left: 10px;
+    box-shadow: -2px 4px 6px #000;
+}
+
+.menu
+{
+    width: 950px;
+    margin: auto;
 }
 
 .menu-links
@@ -116,7 +145,7 @@ a:hover
     float: right; 
     display: block; 
     position: relative;
-    padding-right: 10px;
+    padding-right: 20px;
     padding-left: 10px;
 }
 

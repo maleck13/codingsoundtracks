@@ -1,6 +1,12 @@
-h3= soundtrack.name
-h5 Added By: #{soundtrack._user.username}
-p Description: #{soundtrack.description}
-p Tags: #{soundtrack.tags}
-p Rating: #{soundtrack.rank}
-a(href=soundtrack.link)#{soundtrack.name}
+span(class="playlist")
+    h3= soundtrack.name
+    h5 Added By: #{soundtrack._user.username}
+    p Description: #{soundtrack.description}
+    p Tags: #{soundtrack.tags}
+    p Rating: #{soundtrack.rank}
+    a(href=soundtrack.link)#{soundtrack.name}
+    - if(soundtrack.comments.length > 0)
+        span(class="playlist-comments")
+            - each comment,_id in soundtrack.comments
+                span(class="author") comment.author
+                span(class="comment") comment.text
