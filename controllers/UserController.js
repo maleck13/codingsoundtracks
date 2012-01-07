@@ -42,19 +42,21 @@ userController = {
                 if(data.username === req.body.username && data.password === req.body.password){
                         req.session.loggedin = true;
                         req.session.user = data;
-                        res.redirect("/");
+                        res.redirect(req.session.refUrl);
                 }else{
+                    req.session.refUrl=request.headers.referer;
                     res.render("login",{title:"login",error:{message:"username or password incorrect"}});
                 }
             });
         }else{
-           res.render("login",{title:"login"});
+            req.session.refUrl=req.headers.referer;
+            res.render("login",{title:"login"});
         }
     },
 
     logout : function(req, res){
         req.session.destroy();
-        res.send("logged out");
+        res.redirect(req.headers.referer);
     },
 
     //utitlity function to check if username is available
