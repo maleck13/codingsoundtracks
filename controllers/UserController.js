@@ -44,7 +44,6 @@ userController = {
                         req.session.user = data;
                         res.redirect(req.session.refUrl);
                 }else{
-                    req.session.refUrl=request.headers.referer;
                     res.render("login",{title:"login",error:{message:"username or password incorrect"}});
                 }
             });
