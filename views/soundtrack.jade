@@ -18,10 +18,11 @@ span(class="playlist")
     - if(soundtrack.comments.length > 0)
         span(class="playlist-comments")
             - each comment,_id in soundtrack.comments
-                span(class="author") comment.author
-                span(class="comment") comment.text
+                span(class="author") #{comment._user.username}
+                span(class="comment") #{comment.comment}
     - if(session.loggedin)
         div(class="add-comment")
             form(name="comment-form", method="POST", action="/soundtrack/comment/"+soundtrack._id)
-                textarea(class="comment-entry", name="commentText")
+                textarea(class="comment-entry required", name="comment")
+                input(type="hidden", value=soundtrack._id, name="sid")
                 input(class="go-add-comment", type="submit", value="Add Comment")

@@ -69,6 +69,6 @@ app.get("/soundtrack/show/:id",controllers.soundtrackController.show);
 app.get("/soundtrack/vote/:id/:vote",controllers.soundtrackController.vote);
 app.all("/soundtrack/search",controllers.soundtrackController.search);
 
-var port = (process.env.VMC_APP_PORT || 3000);
+var port = (process.env.VMC_APP_PORT || 8003);
 app.listen(port);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

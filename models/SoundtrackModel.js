@@ -15,6 +15,11 @@ var Vote = new Schema(
     }
 );
 
+var Comment = new Schema({
+    _user :{ type: Schema.ObjectId, ref:'User'},
+    comment : {type: String}
+});
+
 var Soundtrack = new Schema({
    _user :{ type: Schema.ObjectId, ref:'User'},
    tracks : {type: Array},
@@ -24,7 +29,7 @@ var Soundtrack = new Schema({
    rank : {type : Number},
    name : {type : String},
    votes : {type : [Vote]},
-   comments : {type : Array} //author and text
+   comments : {type : [Comment]} //author and text
 });
 
 
@@ -48,11 +53,13 @@ Soundtrack.statics.getSoundtrackVotes = function (sid, callback) {
     this.findOne().where("_id",sid).select('votes').run(callback);
 };
 
-
+Soundtrack.statics.getComments = function (sid,callback) {
+    this.findOne().where("_id",sid).populate("comments._user").select("comments").run(callback);
+}
 
 Soundtrack.statics.findById = function (id,callback) {
     if('string' === typeof id && 'function' === typeof callback){
-        this.findOne().where("_id",id).populate("_user").run(callback);
+        this.findOne().where("_id",id).populate("_user").populate("comments._user").run(callback);
     }else{
         throw{message:"id must be a string and callback must be a function",type:"InvalidArgsException"};
     }

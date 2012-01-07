@@ -166,9 +166,25 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
         },
 
         addComment : function (req, res) {
-            var comment = req.body.commentText || "";
-            console.log("Adding comment: "+comment);
-            soundtrackController.show(req,res);
+            
+            var comment = req.body.comment,
+                soundtrackid = req.body.sid;
+            if(comment && soundtrackid){
+                soundtrack.findById(soundtrackid,function(err,data){
+                    if(err){res.send({code:500, message:"error occurred","err":err}); return; }
+                    else if(data){
+                        data.comments.push({_user:req.session.user._id,"comment":comment});
+                        data.save(function(err,data){
+                            if(err){res.send(err); return;}
+                            res.redirect("/soundtrack/show/"+soundtrackid+"");
+                        });
+                    }
+                });
+            }else{
+                //error
+                res.send("no comment or soundtrackid");
+            }
+
         }
     };
 
