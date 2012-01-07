@@ -50,12 +50,10 @@ userController = {
         }else{
             if(req.headers.referer !== null && req.headers.referer !== undefined)
             {
-                console.log("setting referer to: "+req.headers.referer);
                 req.session.refUrl=req.headers.referer;
             }
             else
             {
-                console.log("setting referer to: /");
                 req.session.refUrl="/";
             }
             res.render("login",{title:"login"});
