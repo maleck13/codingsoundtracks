@@ -39,7 +39,7 @@ userController = {
         if(req.method === "POST"){
             User.findByUserName(req.body.username,function(err,data){
                 if(err)res.send("error occurred");
-                if(data.username === req.body.username && data.password === req.body.password){
+                if(data !== null && data.username === req.body.username && data.password === req.body.password){
                         req.session.loggedin = true;
                         req.session.user = data;
                         res.redirect(req.session.refUrl);
