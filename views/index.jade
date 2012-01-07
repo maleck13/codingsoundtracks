@@ -13,15 +13,10 @@ ul
                 a(class="playlist-link", href=soundtrack.link)!= soundtrack.name
                 span(class="playlist-rank")
                     p score:
-                        - if(undefined !== typeof soundtrack.rank)
-                            span(id="rank")!=soundtrack.rank + " " 
+                        - if("undefined" !== typeof soundtrack.rank)
+                            span(id="rank")!= " " + soundtrack.rank + " "
                         - else
-                            span 0
-                        - if(session.loggedin)
-                            span(class="vote-up")
-                                a(href="/sound-track/vote/"+soundtrack._id+"/up", class="vote", id=soundtrack._id) &uarr; 
-                            span(class="vote-down")
-                                a(href="/soundtrack/vote/"+soundtrack._id+"/down", class="vote", id=soundtrack._id) &darr;
+                            span!= " "+0
                 br
                 br
                 a(href="/soundtrack/show/"+soundtrack._id) More information
