@@ -163,7 +163,12 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
                     res.render("index", {title: "coding soundtracks", soundtracks: data});
                 }
             });
+        },
 
+        addComment : function (req, res) {
+            var comment = req.body.commentText || "";
+            console.log("Adding comment: "+comment);
+            this.show(req,res);
         }
     };
 

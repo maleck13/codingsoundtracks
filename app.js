@@ -58,10 +58,13 @@ app.get("/logout",controllers.userController.logout);
 app.post("/user/checkname",controllers.userController.checkUsernameAvailable);
 
 //soundtracks
+//comment on soundtrack:
+app.all("/soundtrack/comment/:id",controllers.soundtrackController.addComment);
 app.all("/soundtrack/add",controllers.soundtrackController.add);
-app.get("/soundtrack/show/:id",controllers.soundtrackController.show);
 app.all("/soundtrack/delete/:id",controllers.soundtrackController.deleteTrack);
 app.get("/soundtrack/update/:id",controllers.soundtrackController.update);
+app.get("/soundtrack/show/:id",controllers.soundtrackController.show);
+
 //posted to via jquery ajax call
 app.get("/soundtrack/vote/:id/:vote",controllers.soundtrackController.vote);
 app.all("/soundtrack/search",controllers.soundtrackController.search);
