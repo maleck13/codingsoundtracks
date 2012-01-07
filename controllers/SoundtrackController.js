@@ -168,7 +168,7 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
         addComment : function (req, res) {
             var comment = req.body.commentText || "";
             console.log("Adding comment: "+comment);
-            this.show(req,res);
+            soundtrackController.show(req,res);
         }
     };
 
