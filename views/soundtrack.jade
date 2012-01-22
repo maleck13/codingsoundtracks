@@ -11,7 +11,7 @@ span(class="playlist")
             span 0
         - if(session.loggedin)
             span(class="vote-up")
-                a(href="/sound-track/vote/"+soundtrack._id+"/up", class="vote", id=soundtrack._id) &uarr;
+                a(href="/soundtrack/vote/"+soundtrack._id+"/up", class="vote", id=soundtrack._id) &uarr;
             span(class="vote-down")
                 a(href="/soundtrack/vote/"+soundtrack._id+"/down", class="vote", id=soundtrack._id) &darr;
 
