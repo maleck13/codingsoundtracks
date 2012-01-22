@@ -10,7 +10,7 @@ var mongoose = require('mongoose')
     , db   = null
     , mongoUrl = null;
 
-
+//change for mongohq
 
 var generate_mongo_url = function(obj){
     obj.hostname = ("staff.mongohq.com" || 'localhost');
