@@ -13,10 +13,12 @@ var mongoose = require('mongoose')
 
 
 var generate_mongo_url = function(obj){
-    obj.hostname = (obj.hostname || 'localhost');
-    obj.port = (obj.port || 27017);
-    obj.db = (obj.db || 'test');
-
+    obj.hostname = ("staff.mongohq.com" || 'localhost');
+    obj.port = (10044 || 27017);
+    obj.db = ('codingsoundtracks' || 'test');
+    obj.username="codingsoundtracks";
+    obj.password="JJyxNoDq";
+    
     if(obj.username && obj.password){
         return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
     }
