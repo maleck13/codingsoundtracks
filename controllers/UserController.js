@@ -39,22 +39,30 @@ userController = {
         if(req.method === "POST"){
             User.findByUserName(req.body.username,function(err,data){
                 if(err)res.send("error occurred");
-                if(data.username === req.body.username && data.password === req.body.password){
+                if(data !== null && data.username === req.body.username && data.password === req.body.password){
                         req.session.loggedin = true;
                         req.session.user = data;
-                        res.redirect("/");
+                        res.redirect(req.session.refUrl);
                 }else{
                     res.render("login",{title:"login",error:{message:"username or password incorrect"}});
                 }
             });
         }else{
-           res.render("login",{title:"login"});
+            if(req.headers.referer !== null && req.headers.referer !== undefined)
+            {
+                req.session.refUrl=req.headers.referer;
+            }
+            else
+            {
+                req.session.refUrl="/";
+            }
+            res.render("login",{title:"login"});
         }
     },
 
     logout : function(req, res){
         req.session.destroy();
-        res.send("logged out");
+        res.redirect(req.headers.referer);
     },
 
     //utitlity function to check if username is available

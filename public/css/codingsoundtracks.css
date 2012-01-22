@@ -168,3 +168,23 @@ a:hover
     min-height: 20px;
     width: 100%;
 }
+
+.go-add-comment{
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.add-comment{
+    
+}
+
+.comment-form{
+    
+}
+
+.comment-entry{
+    margin: 10px;
+    height: 75px;
+    width: 500px;
+    clear: both;
+}

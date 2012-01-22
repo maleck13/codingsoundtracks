@@ -1,12 +1,27 @@
 span(class="playlist")
-    h3= soundtrack.name
+    h3
+        a(href=soundtrack.link)#{soundtrack.name}
     h5 Added By: #{soundtrack._user.username}
     p Description: #{soundtrack.description}
     p Tags: #{soundtrack.tags}
-    p Rating: #{soundtrack.rank}
-    a(href=soundtrack.link)#{soundtrack.name}
+    p Score:
+        - if("undefined" !== typeof soundtrack.rank)
+            span(id="rank")!=soundtrack.rank + " "
+        - else
+            span 0
+        - if(session.loggedin)
+            span(class="vote-up")
+                a(href="/sound-track/vote/"+soundtrack._id+"/up", class="vote", id=soundtrack._id) &uarr;
+            span(class="vote-down")
+                a(href="/soundtrack/vote/"+soundtrack._id+"/down", class="vote", id=soundtrack._id) &darr;
+
     - if(soundtrack.comments.length > 0)
         span(class="playlist-comments")
             - each comment,_id in soundtrack.comments
                 span(class="author") comment.author
                 span(class="comment") comment.text
+    - if(session.loggedin)
+        div(class="add-comment")
+            form(name="comment-form", method="POST", action="/soundtrack/comment/"+soundtrack._id)
+                textarea(class="comment-entry", name="commentText")
+                input(class="go-add-comment", type="submit", value="Add Comment")
