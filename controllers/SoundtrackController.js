@@ -26,6 +26,19 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
             }
         },
 
+        list : function (req,res) {
+          soundtrack.findValidPlaylists(function(err,data){
+            if(err)throw err;
+            if(req.params.type && req.params.type === "json"){
+              if(req.params.callback){
+                    res.send(req.params.callback+"("+JSON.stringify(data)+")");
+              }else{
+                    res.send(data);
+              }
+            }
+          });
+        },
+
         show:function (req, res) {
             var listId = req.params.id;
             if (!listId) {
