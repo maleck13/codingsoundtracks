@@ -13,9 +13,9 @@ var mongoose = require('mongoose')
 
 
 var generate_mongo_url = function(obj){
-    obj.hostname = ("staff.mongohq.com" || 'localhost');
-    obj.port = (10044 || 27017);
-    obj.db = ('codingsoundtracks' || 'test');
+    obj.hostname = 'localhost';
+    obj.port = 27017;
+    obj.db = 'codingsoundtracks';
     obj.username="codingsoundtracks";
     obj.password="JJyxNoDq";
     

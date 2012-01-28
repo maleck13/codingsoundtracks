@@ -45,6 +45,7 @@ app.dynamicHelpers({
    } 
 });
 
+module.exports = app;
 //homepage
 app.get("/", controllers.indexController.homepage);
 
@@ -70,6 +71,6 @@ app.get("/soundtrack/vote/:id/:vote",controllers.soundtrackController.vote);
 app.all("/soundtrack/search",controllers.soundtrackController.search);
 app.all("/soundtrack/list/:type/:callback",controllers.soundtrackController.list);
 
-var port = (process.env.VMC_APP_PORT || 8003);
+var port = (8004);
 app.listen(port);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log("Express server listening on port");
