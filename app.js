@@ -48,6 +48,7 @@ app.dynamicHelpers({
 module.exports = app;
 //homepage
 app.get("/", controllers.indexController.homepage);
+app.get("/list/:page",controllers.indexController.homepage);
 
 //registration page
 app.get("/register",controllers.userController.register);
@@ -72,7 +73,7 @@ app.all("/soundtrack/search",controllers.soundtrackController.search);
 app.all("/soundtrack/list/:type/:callback",controllers.soundtrackController.list);
 
 
-var port = (8004);
+var port = (3000);
 app.listen(port);
 console.log("Express server listening on port");
 
