@@ -9,7 +9,7 @@ function vote(){
     $.get(href,function(data){
         console.log(data);
         if(data.code === 200){
-           rankDiv.html("- "+data.rating);
+           rankDiv.html(" "+data.rating+" ");
         }
     },'json');
     return false;

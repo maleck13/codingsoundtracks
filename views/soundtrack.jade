@@ -6,7 +6,7 @@ span(class="playlist")
     p Tags: #{soundtrack.tags}
     p Score:
         - if("undefined" !== typeof soundtrack.rank)
-            span(id="rank")!=soundtrack.rank + " "
+            span(id="rank")!= " "+soundtrack.rank + " "
         - else
             span 0
         - if(session.loggedin)
