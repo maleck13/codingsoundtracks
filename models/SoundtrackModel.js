@@ -41,12 +41,24 @@ Soundtrack.statics.deleteSoundtrack = function (soundtrack,callback) {
 
 };
 
+
+
 Soundtrack.statics.findValidPlaylists = function(callback) {
     this.find()
         .where("link").ne(null)
         .where("tracks").ne(null)
         .sort('rank','descending')
         .run(callback);
+};
+
+
+Soundtrack.statics.deleteById = function (id,cb) {
+  this.find().where("_id",id).run(function (err,ob){
+      if(err)cb(err);
+      else{
+          this.remove(ob).run(cb);
+      }
+  });  
 };
 
 Soundtrack.statics.getSoundtrackVotes = function (sid, callback) {

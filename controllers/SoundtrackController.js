@@ -82,16 +82,10 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
             if (req.params.id) {
                 console.log("delete");
 
-                soundtrack.findById(req.params.id, function (err, data) {
-                    if (data._user._id !== req.session.user._id) {
-                        res.send({message:"denied"}, 503);
-                    } else {
-                        soundtrack.deleteSoundtrack(data._id, function (err, data) {
-                            res.send({message:"ok"});
-                        });
-
-                    }
-                });
+               soundtrack.deleteById(req.params.id, function(err,data){
+                  if(err)res.send(err);
+                   else res.send("deleted");
+               });
             } else {
                 res.send({message:"denied"}, 503);
             }
