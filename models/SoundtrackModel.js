@@ -41,12 +41,24 @@ Soundtrack.statics.deleteSoundtrack = function (soundtrack,callback) {
 
 };
 
+
+
 Soundtrack.statics.findValidPlaylists = function(callback) {
     this.find()
         .where("link").ne(null)
         .where("tracks").ne(null)
         .sort('rank','descending')
         .run(callback);
+};
+
+
+Soundtrack.statics.deleteById = function (id,cb) {
+  this.find().where("_id",id).run(function (err,ob){
+      if(err)cb(err);
+      else{
+          this.remove(ob).run(cb);
+      }
+  });  
 };
 
 Soundtrack.statics.getSoundtrackVotes = function (sid, callback) {
@@ -76,12 +88,9 @@ Soundtrack.statics.searchByKeyWords = function (words, callback) {
 
 };
 
-//Soundtrack.path("tags").validate(function(value){
-//    if('Array' === typeof value){
-//        return true;
-//    }
-//    return false;
-//}, "tags error");
+Soundtrack.statics.pageResults = function (start,cb) {
+  this.find().skip(start).sort("rank","descending").limit(start + 25).run(cb);  
+};
 
 Soundtrack.path("description").validate(function(value){
     if('string' === typeof value){

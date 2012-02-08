@@ -10,11 +10,12 @@ var mongoose = require('mongoose')
     , db   = null
     , mongoUrl = null;
 
-
+//change for mongohq
 
 var generate_mongo_url = function(obj){
+    obj = obj || {};
     obj.hostname = 'localhost';
-    obj.port = 27017;
+    obj.port =  27017;
     obj.db = 'codingsoundtracks';
     obj.username="codingsoundtracks";
     obj.password="JJyxNoDq";
@@ -27,15 +28,8 @@ var generate_mongo_url = function(obj){
     }
 };
 
-if(process.env.VCAP_SERVICES){
-    var env = JSON.parse(process.env.VCAP_SERVICES);
-    var mongo = env['mongodb-1.8'][0]['credentials'];
-    mongoUrl = generate_mongo_url(mongo);
+mongoUrl = generate_mongo_url();
 
-}else{
-    mongoUrl = generate_mongo_url({db:"soundtracks"});
-
-}
 db = mongoose.connect(mongoUrl);
 
 
