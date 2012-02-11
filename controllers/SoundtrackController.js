@@ -177,6 +177,7 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
             var comment = req.body.comment,
                 soundtrackid = req.body.sid;
             if(comment && soundtrackid){
+                comment = comment.replace(/<script.*<\/script>/);
                 soundtrack.findById(soundtrackid,function(err,data){
                     if(err){res.send({code:500, message:"error occurred","err":err}); return; }
                     else if(data){
