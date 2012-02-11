@@ -93,21 +93,29 @@ Soundtrack.statics.pageResults = function (start,cb) {
 };
 
 Soundtrack.path("description").validate(function(value){
+    
     if('string' === typeof value){
+        if(value.match(/<script.*/) !== -1) return false;
+        
         return true;
     }
     return false;
 }, "description error");
 
 Soundtrack.path("link").validate(function(value){
+    if(value.match(/<script.*/) !== -1) return false;
+    
     if(value.search(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/) !== -1){
+        
         return true;
     }
     return false;
 }, "link error");
 
 Soundtrack.path("name").validate(function(value){
+    if(value.match(/<script.*/) !== -1) return false;
     if('string' === typeof value){
+        value= value.replace(/<script.*<\/script>/,"");
         return true;
     }
     return false;

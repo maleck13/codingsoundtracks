@@ -14,7 +14,7 @@ var mongoose = require('mongoose')
 
 var generate_mongo_url = function(obj){
     obj = obj || {};
-    obj.hostname = 'localhost';
+    obj.hostname = '178.79.185.58';
     obj.port =  27017;
     obj.db = 'codingsoundtracks';
     obj.username="codingsoundtracks";
