@@ -120,6 +120,10 @@ Soundtrack.path("name").validate(function(value){
     return false;
 }, "name error");
 
+
+Soundtrack.path("tags").validate(function(val){
+    if(value.match(/<script.*/) !== null) return false;
+},"tag error");
 //Soundtrack.path("rank").validate(function(value){
 //    console.log(value + typeof value);
 //    if('number' === typeof value){
