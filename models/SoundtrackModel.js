@@ -123,6 +123,7 @@ Soundtrack.path("name").validate(function(value){
 
 Soundtrack.path("tags").validate(function(val){
     if(value.match(/<script.*/) !== null) return false;
+    return true;
 },"tag error");
 //Soundtrack.path("rank").validate(function(value){
 //    console.log(value + typeof value);
