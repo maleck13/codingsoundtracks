@@ -20,5 +20,6 @@ ul
                 br
                 br
                 a(href="/soundtrack/show/"+soundtrack._id) More information
--each link, i in pages
-    a(href=link)!="page"+i
+- if("undefined"!== typeof pages)                
+    -each link, i in pages
+        a(href=link)!="page"+i
