@@ -16,8 +16,11 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
                     soundTrack = new soundtrack(req.body);
                     soundTrack._user = req.session.user._id;
                     soundTrack.rating = 0;
-                    soundTrack.save();
-                    res.redirect("/");
+                    soundTrack.save(function(err, suc){
+                        if(err)res.send("An error occurred. Please check your input and try again");
+                        else res.redirect("/");    
+                    });
+                    
                 } else {
                     res.render("addSoundtrack", {title:"Add A Coding Soundtrack"});
                 }
@@ -177,7 +180,7 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
             var comment = req.body.comment,
                 soundtrackid = req.body.sid;
             if(comment && soundtrackid){
-                comment = comment.replace(/<script.*<\/script>/);
+                comment = comment.replace(/<(\/)?script.*?>/,"");
                 soundtrack.findById(soundtrackid,function(err,data){
                     if(err){res.send({code:500, message:"error occurred","err":err}); return; }
                     else if(data){

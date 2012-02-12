@@ -95,7 +95,7 @@ Soundtrack.statics.pageResults = function (start,cb) {
 Soundtrack.path("description").validate(function(value){
     
     if('string' === typeof value){
-        if(value.match(/<script.*/) !== -1) return false;
+        if(value.match(/<script.*/) !== null) return false;
         
         return true;
     }
@@ -103,7 +103,7 @@ Soundtrack.path("description").validate(function(value){
 }, "description error");
 
 Soundtrack.path("link").validate(function(value){
-    if(value.match(/<script.*/) !== -1) return false;
+    if(value.match(/<script.*/) !== null) return false;
     
     if(value.search(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/) !== -1){
         
@@ -113,9 +113,8 @@ Soundtrack.path("link").validate(function(value){
 }, "link error");
 
 Soundtrack.path("name").validate(function(value){
-    if(value.match(/<script.*/) !== -1) return false;
+    if(value.match(/<script.*/) !== null) return false;
     if('string' === typeof value){
-        value= value.replace(/<script.*<\/script>/,"");
         return true;
     }
     return false;
