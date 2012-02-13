@@ -34,11 +34,9 @@ var Soundtrack = new Schema({
 
 
 Soundtrack.statics.deleteSoundtrack = function (soundtrack,callback) {
-
     if('object' === typeof soundtrack || 'string' ===  typeof soundtrack ){
         this.remove(soundtrack).run(callback);
     }
-
 };
 
 
@@ -47,7 +45,7 @@ Soundtrack.statics.findValidPlaylists = function(callback) {
     this.find()
         .where("link").ne(null)
         .where("tracks").ne(null)
-        .sort('rank','descending')
+        .sort({'rank': 'descending'})
         .run(callback);
 };
 
@@ -128,20 +126,6 @@ Soundtrack.path("tags").validate(function(value){
     }
     return false;
 }, "tags error");
-//Soundtrack.path("rank").validate(function(value){
-//    console.log(value + typeof value);
-//    if('number' === typeof value){
-//        return true;
-//    }
-//    return false;
-//}, "rank error");
-
-//Soundtrack.path("comments").validate(function(value){
-//    if('Array' === typeof value){
-//        return true;
-//    }
-//    return false;
-//}, "comments error");
 
 
 module.exports = Soundtrack;
