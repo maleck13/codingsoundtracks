@@ -119,9 +119,13 @@ Soundtrack.path("name").validate(function(value){
 }, "name error");
 
 
-Soundtrack.path("tags").validate(function(val){
+Soundtrack.path("tags").validate(function(value){
     if(value.match(/<script.*/) !== null) return false;
-},"tag error");
+    if('string' === typeof value){
+        return true;
+    }
+    return false;
+}, "tags error");
 
 
 module.exports = Soundtrack;

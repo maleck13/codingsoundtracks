@@ -49,7 +49,7 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
             } else {
                 soundtrack.findById(listId, function (err, data) {
                     console.log(data);
-                    if (err) {
+                    if (err || ! data) {
                         res.send("no page found", 404);
                     }
                     else {
@@ -166,6 +166,8 @@ var soundtrack = require("../models").db.models.Soundtrack , user = require("../
             var words = req.body.search || "";
             console.log(words);
             soundtrack.searchByKeyWords(words,function(err,data){
+                console.log(data);
+                if(err || ! data) data = [];
                 if(type === "json"){
                     res.send(data);
                     return;
