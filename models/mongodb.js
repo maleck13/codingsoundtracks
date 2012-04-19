@@ -18,7 +18,7 @@ var generate_mongo_url = function(obj){
     obj.port =  27017;
     obj.db = 'codingsoundtracks';
     obj.username="codingsoundtracks";
-    obj.password="JJyxNoDq";
+    obj.password="";
     
     if(obj.username && obj.password){
         return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
